@@ -1,0 +1,21 @@
+
+#include "motor.h"
+
+
+int main(){
+
+Motor_Init();
+
+}
+
+
+while(1)
+
+{
+Motorcw_angle(180,10);
+delay_ms(1000);
+Motorse_angle(180,10);
+delay_ms(1000);
+
+
+}

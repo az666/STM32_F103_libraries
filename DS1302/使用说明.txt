@@ -1,0 +1,17 @@
+
+#include "ds1302.h"
+
+int main (){	
+
+        DS1302_Init();        //DS1302初始化
+	Motor_Init();
+	delay_ms(10);
+	///DS1302_Write_Time();
+}
+while(1)
+	{
+	LED =1;
+	DS1302_Get_Time(time);
+        printf("%d%d%d%d年%d%d月%d%d日 ", time[0],time[1],time[2],time[3],time[4],time[5],time[6],time[7]);
+        printf("%d%d时%d%d分%d%d秒 星期%d\n", time[9],time[10],time[11],time[12],time[13],time[14],time[8]);
+}

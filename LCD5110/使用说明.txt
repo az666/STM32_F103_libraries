@@ -1,0 +1,59 @@
+#include "led.h"
+#include "delay.h"
+#include "sys.h"
+#include "LCD5110.h"
+//ALIENTEK miniSTM32开发板实验1
+//跑马灯实验  
+//技术支持：www.openedv.com
+//广州市星翼电子科技有限公司
+ int main(void)
+ {	
+	delay_init();	    	 //延时函数初始化	  
+	LED_Init();		  	//初始化与LED连接的硬件接口
+
+	#if USESPI
+			SPI1_Config();
+			DMA_SPI_Config();
+	#endif
+
+	LCD5110_Init();
+	delay_ms(10);         
+	LCD_Clear();
+//	 
+//  delay_ms(10); 
+//	LCD_Write_EnStr(0,0,"**************");
+//	LCD_Write_EnStr(0,1,"gu dong dong");
+//	LCD_Write_EnStr(0,2,"smart health");
+//	LCD_Write_EnStr(0,3,"JiangsuZhihai");
+//	LCD_Write_EnStr(0,4,"ElectronicTechnology");
+//	LCD_Write_EnStr(0,5,"**************");
+ 
+ delay_ms(10); //μè′y
+  LCD_Write_Hanzi(2,0,0);
+	LCD_Write_Hanzi(4,0,1);
+	LCD_Write_Hanzi(6,0,2);
+	LCD_Write_Hanzi(8,0,3);
+	LCD_Write_Hanzi(10,0,4);
+
+  LCD_Write_Hanzi(2,2,5);
+	LCD_Write_Hanzi(4,2,6);
+	LCD_Write_Hanzi(6,2,7);
+	LCD_Write_Hanzi(8,2,8);
+	LCD_Write_Hanzi(10,2,9);
+	  
+	LCD_Write_Hanzi(2,4,10);
+	LCD_Write_Hanzi(4,4,11);
+// 
+	while(1)
+	{
+		GPIO_ResetBits(GPIOA,GPIO_Pin_8); //LED0输出低
+		GPIO_SetBits(GPIOD,GPIO_Pin_2);//LED1输出高
+		delay_ms(300);
+	 
+		GPIO_SetBits(GPIOA,GPIO_Pin_8);//LED0输出高
+		GPIO_ResetBits(GPIOD,GPIO_Pin_2);//LED1输出低
+		delay_ms(300);
+	 
+	}
+ }
+
